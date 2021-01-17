@@ -1,8 +1,6 @@
 package com.example.p18_nice_user_form;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,87 +8,23 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Objects;
 
 public class RegisterFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
-    String gender_selected, usernameInput, passInput, passConfInput, emailInput, namesInput, surnamesInput, birthDateInput;
-    TextInputEditText username, password, passConf, email, names, surnames, birthDate;
+    String gender_selected, usernameInput, passInput, passConfInput, emailInput, namesInput, surnamesInput; // birthDateInput;
+    TextInputEditText username, password, passConf, email, names, surnames; // birthDate;
     Button login_button, register_button;
     Spinner spinner;
-    private final TextWatcher registerTextWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            usernameInput = Objects.requireNonNull(username.getText()).toString().trim();
-            passInput = Objects.requireNonNull(password.getText()).toString().trim();
-            passConfInput = Objects.requireNonNull(passConf.getText()).toString().trim();
-            emailInput = Objects.requireNonNull(email.getText()).toString().trim();
-            namesInput = Objects.requireNonNull(names.getText()).toString().trim();
-            surnamesInput = Objects.requireNonNull(surnames.getText()).toString().trim();
-            birthDateInput = Objects.requireNonNull(birthDate.getText()).toString().trim();
-
-            if (usernameInput.isEmpty()) {
-                username.setError(String.valueOf(R.string.requiredField));
-                register_button.setEnabled(false);
-            } else {
-                register_button.setEnabled(true);
-            }
-            if (passInput.isEmpty()) {
-                password.setError(String.valueOf(R.string.requiredField));
-                register_button.setEnabled(false);
-            } else {
-                register_button.setEnabled(true);
-            }
-            if (passConfInput.isEmpty()) {
-                passConf.setError(String.valueOf(R.string.requiredField));
-                register_button.setEnabled(false);
-            } else {
-                register_button.setEnabled(true);
-            }
-            if (emailInput.isEmpty()) {
-                email.setError(String.valueOf(R.string.requiredField));
-                register_button.setEnabled(false);
-            } else {
-                register_button.setEnabled(true);
-            }
-            if (namesInput.isEmpty()) {
-                names.setError(String.valueOf(R.string.requiredField));
-                register_button.setEnabled(false);
-            } else {
-                register_button.setEnabled(true);
-            }
-            if (surnamesInput.isEmpty()) {
-                surnames.setError(String.valueOf(R.string.requiredField));
-                register_button.setEnabled(false);
-            } else {
-                register_button.setEnabled(true);
-            }
-            if (birthDateInput.isEmpty()) {
-                birthDate.setError(String.valueOf(R.string.requiredField));
-                register_button.setEnabled(false);
-            } else {
-                register_button.setEnabled(true);
-            }
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-
-        }
-    };
+    MaterialCheckBox checkBox;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -118,32 +52,80 @@ public class RegisterFragment extends Fragment implements AdapterView.OnItemSele
         email = v.findViewById(R.id.editText_email_register);
         names = v.findViewById(R.id.editText_names_register);
         surnames = v.findViewById(R.id.editText_surnames_register);
-        birthDate = v.findViewById(R.id.editText_datePicker_register);
+
+        refreshForm();
 
         login_button.setOnClickListener(v1 -> {
             NavDirections navDirections = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment();
             Navigation.findNavController(v).navigate(navDirections);
         });
 
-        username.addTextChangedListener(registerTextWatcher);
-        password.addTextChangedListener(registerTextWatcher);
-        passConf.addTextChangedListener(registerTextWatcher);
-        email.addTextChangedListener(registerTextWatcher);
-        names.addTextChangedListener(registerTextWatcher);
-        surnames.addTextChangedListener(registerTextWatcher);
-        birthDate.addTextChangedListener(registerTextWatcher);
-
-
-        if (gender_selected.isEmpty()) {
-            Toast.makeText(getContext(), "Please select a pronoun", Toast.LENGTH_SHORT).show();
-        }
-
         register_button.setOnClickListener(v12 -> {
+
             NavDirections navDirections = LoginFragmentDirections.actionLoginFragmentToWelcomeFragment();
             Navigation.findNavController(v).navigate(navDirections);
+
+           /* if(checkTextFields()){
+                NavDirections navDirections = LoginFragmentDirections.actionLoginFragmentToWelcomeFragment();
+                Navigation.findNavController(v).navigate(navDirections);
+            }
+
+            */
+
         });
 
         return v;
+    }
+
+    /*public boolean checkTextFields(){
+        usernameInput = Objects.requireNonNull(username.getText()).toString().trim();
+        passInput = Objects.requireNonNull(password.getText()).toString().trim();
+        passConfInput = Objects.requireNonNull(passConf.getText()).toString().trim();
+        emailInput = Objects.requireNonNull(email.getText()).toString().trim();
+        namesInput = Objects.requireNonNull(names.getText()).toString().trim();
+        surnamesInput = Objects.requireNonNull(surnames.getText()).toString().trim();
+        boolean completedFields;
+        completedFields = !usernameInput.isEmpty();
+        completedFields = !passInput.isEmpty();
+        completedFields = !passConfInput.isEmpty();
+        completedFields = !emailInput.isEmpty();
+        completedFields = !namesInput.isEmpty();
+        completedFields = !surnamesInput.isEmpty();
+        completedFields = checkBox.isChecked();
+        return completedFields;
+    }
+
+     */
+
+    public void refreshForm(){
+        usernameInput = Objects.requireNonNull(username.getText()).toString().trim();
+        passInput = Objects.requireNonNull(password.getText()).toString().trim();
+        passConfInput = Objects.requireNonNull(passConf.getText()).toString().trim();
+        emailInput = Objects.requireNonNull(email.getText()).toString().trim();
+        namesInput = Objects.requireNonNull(names.getText()).toString().trim();
+        surnamesInput = Objects.requireNonNull(surnames.getText()).toString().trim();
+
+        if (usernameInput.isEmpty()) {
+            username.setError("required field");
+        }
+        if (passInput.isEmpty()) {
+            password.setError("required field");
+        }
+        if (passConfInput.isEmpty()) {
+            passConf.setError("required field");
+        }
+        if (emailInput.isEmpty()) {
+            email.setError("required field");
+        }
+        if (namesInput.isEmpty()) {
+            names.setError("required field");
+        }
+        if (surnamesInput.isEmpty()) {
+            surnames.setError("required field");
+        }
+        if (!checkBox.isChecked()){
+            checkBox.setError("required field");
+        }
     }
 
     @Override
