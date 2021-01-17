@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".WelcomeFragment">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textView_welcomeScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/san_francisco_regular"
+        android:gravity="center_vertical"
+        android:text="@string/text_welcomeScreen"
+        android:textAlignment="center"
+        android:textColor="@color/primaryDarkColor"
+        tools:ignore="RtlCompat" />
+</LinearLayout>

@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">P1.8_Nice_User_Form</string>
+
+    //home fragment
+    <string name="text_title_home">Nice UserForm</string>
+    <string name="text_home_login">LOGIN</string>
+    <string name="text_home_register">REGISTER</string>
+
+    //Login fragment
+    <string name="text_title_loginScreen">Login</string>
+    <string name="b_text_login_loginScreen">Login</string>
+    <string name="b_text_register_loginScreen">Register</string>
+    <string name="b_text_forgotPass_loginScreen">Forgot password?</string>
+    <string name="hint_username_loginScreen">username</string>
+    <string name="hint_password_loginScreen">password</string>
+
+    //Register fragment
+    <string name="hint_genderPronouns">Gender pronoun</string>
+    <string name="checkbox_terms">I accept terms and conditions.</string>
+    <string name="text_pass_registerScreen">repeat password</string>
+    <string name="hint_email">email</string>
+    <string name="hint_names">names</string>
+    <string name="hint_surnames">surnames</string>
+    <string name="hint_birthdate">birth date</string>
+
+    //Welcome fragment
+    <string name="text_welcomeScreen">Welcome to the App!</string>
+    <string name="content_description_spinner">spinner Selections</string>
+    <string name="repeat_password">repeat password</string>
+    <string name="email">email</string>
+    <string name="names">names</string>
+    <string name="surnames">surnames</string>
+    <string name="birth_date">birth date</string>
+    <string name="invalid_username">required field*</string>
+
+    <string-array name="gender_array">
+        <item>he</item>
+        <item>she</item>
+        <item>it</item>
+    </string-array>
+
+</resources>
